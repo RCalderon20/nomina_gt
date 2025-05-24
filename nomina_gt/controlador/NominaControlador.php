@@ -89,7 +89,6 @@ class NominaControlador {
 
                 $pdf->Ln(8);
 
-                // --- Datos de nómina ---
                 $pdf->SetFont('Arial', 'B', 14);
                 $pdf->SetTextColor(0, 0, 0);
                 $pdf->Cell(0, 10, 'Detalles de la Nomina', 0, 1, 'L');

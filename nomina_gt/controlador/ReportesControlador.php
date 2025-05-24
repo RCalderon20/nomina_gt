@@ -3,7 +3,7 @@ require_once '../modelo/Reporte.php';
 session_start();
 
 $estado = $_GET['estado'] ?? 'trabajando';
-$empleados = Reporte::obtenerPorEstado($estado);
+$empleados = Reporte::ObtenerEmpleadosPorEstado($estado);
 $filtro = $_GET['filtro'] ?? 'todos';
 
 if ($filtro === 'comisiones') {

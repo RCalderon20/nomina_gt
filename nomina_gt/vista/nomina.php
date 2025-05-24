@@ -1,12 +1,16 @@
 <?php
 require_once '../controlador/NominaControlador.php';
+session_start(); 
+require_once '../controlador/NominaControlador.php';
 
+$rol = $_SESSION['rol'] ?? ''; 
+$dashboardUrl = ($rol === 'admin') ? 'dashboard.php' : 'dashboard2.php';
 $mensaje = '';
 $empleadoInfo = null;
 $resultado = [];
 $calculoRealizado = false;
-
 $controlador = new NominaControlador();
+
 
 if (isset($_POST['buscar_empleado'])) {
     $id_empleado = filter_input(INPUT_POST, 'id_empleado', FILTER_VALIDATE_INT);
@@ -49,7 +53,7 @@ if (isset($_POST['guardar_nomina'])) {
         $resultado = $controlador->procesarNomina($id_empleado, $horas_extra, $comisiones, $prestamo, $descripcion_prestamo);
         if (isset($resultado['success'])) {
             $mensaje = $resultado['mensaje'];
-            $calculoRealizado = false; // Limpiar cálculo tras guardar
+            $calculoRealizado = false; 
             $resultado = [];
         } else {
             $mensaje = $resultado['error'];
@@ -66,9 +70,10 @@ if (isset($_POST['guardar_nomina'])) {
     <meta charset="UTF-8">
     <title>Calcular y Guardar Nómina</title>
     <br>
-    <form action="dashboard.php" method="get">
+    <form action="<?php echo $dashboardUrl; ?>" method="get">
         <button type="submit">Volver al Dashboard</button>
     </form>
+
 </head>
 <body>
     <h1>Calcular y Guardar Nómina</h1>

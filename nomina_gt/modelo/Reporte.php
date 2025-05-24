@@ -2,7 +2,7 @@
 require_once('../config/Conexion.php');
 
 class Reporte {
-    public static function obtenerPorEstado($estado) {
+    public static function ObtenerEmpleadosPorEstado($estado) {
         $conexion = Conexion::conectar(); 
         $stmt = $conexion->prepare("CALL ObtenerEmpleadosPorEstado(?)");
         $stmt->bind_param("s", $estado);
@@ -33,10 +33,9 @@ class Reporte {
 
         return $nomina;
     }
-
     public static function obtenerNominaConComisiones() {
         $conexion = Conexion::conectar();
-        $stmt = $conexion->prepare("SELECT * FROM nomina WHERE comisiones > 0 ORDER BY comisiones DESC");
+        $stmt = $conexion->prepare("CALL obtenerNominaConComisiones()");
         $stmt->execute();
         $resultado = $stmt->get_result();
 
@@ -49,7 +48,7 @@ class Reporte {
         $conexion->close();
 
         return $nomina;
-    }
+}
 
     public static function obtenerPrestamos() {
         $conexion = Conexion::conectar();

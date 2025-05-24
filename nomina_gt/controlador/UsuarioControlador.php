@@ -1,12 +1,11 @@
 <?php
 require_once '../modelo/Usuario.php';
 
-session_start(); // Si quieres usar mensajes con sesiones
+session_start(); 
 
 $usuarioModel = new Usuario();
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Sanear datos recibidos
     $nombre_usuario = trim($_POST['nombre_usuario'] ?? '');
     $contrasena = trim($_POST['contrasena'] ?? '');
     $rol = trim($_POST['rol'] ?? '');
@@ -51,10 +50,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     exit();
 }
 
-// Obtener lista usuarios para mostrar
 $usuarios = $usuarioModel->listarUsuarios();
 
-// Obtener usuario a editar si se solicitó
 $editar = null;
 if (isset($_GET['editar'])) {
     $editar = $usuarioModel->obtenerUsuarioPorId(intval($_GET['editar']));

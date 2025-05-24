@@ -19,7 +19,7 @@ class LoginControlador {
             if ($resultado) {
                 $_SESSION['usuario'] = $usuario;
                 $_SESSION['id_usuario'] = $resultado['id_usuario'];
-                $_SESSION['rol'] = $resultado['rol']; // Guardamos el rol en sesión
+                $_SESSION['rol'] = $resultado['rol']; 
 
                 // Redirigir según el rol
                 if ($resultado['rol'] === 'admin') {

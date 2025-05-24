@@ -8,7 +8,7 @@ session_destroy();
 <head>
     <meta charset="UTF-8">
     <title>Cerrando sesión...</title>
-    <meta http-equiv="refresh" content="2;url=../index.php"> <!-- Redirige a index en 2 segundos -->
+    <meta http-equiv="refresh" content="2;url=../index.php"> 
     <style>
         body {
             font-family: Arial, sans-serif;

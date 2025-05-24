@@ -29,14 +29,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 if (isset($_GET["eliminar"])) {
     $idEmpleado = intval($_GET["eliminar"]);
-
-    $resultado = Empleado::GestionarEliminacionEmpleado($idEmpleado);
-
+    Empleado::CambiarEstadoABajaEmpleado($idEmpleado);
     session_start();
     if ($resultado === 'Empleado pasado a estado BAJA') {
         $_SESSION['mensaje'] = "Empleado con ID $idEmpleado cambiado a estado BAJA.";
-    } elseif ($resultado === 'Empleado eliminado') {
-        $_SESSION['mensaje'] = "Empleado con ID $idEmpleado eliminado definitivamente.";
     } else {
         $_SESSION['error'] = "Error: $resultado";
     }
@@ -44,3 +40,4 @@ if (isset($_GET["eliminar"])) {
     header("Location: empleados.php");
     exit;
 }
+

@@ -85,25 +85,13 @@ class Empleado {
         $conexion->close();
     }
 
-    public static function GestionarEliminacionEmpleado($id) {
+    public static function CambiarEstadoABajaEmpleado($id) {
         $conexion = Conexion::conectar();
-        $resultado = '';
-
-        $stmt = $conexion->prepare("CALL GestionarEliminacionEmpleado(?, @p_resultado)");
+        $stmt = $conexion->prepare("CALL CambiarEstadoABajaEmpleado(?)");
         $stmt->bind_param("i", $id);
         $stmt->execute();
         $stmt->close();
-
-        // Leer la variable OUT
-        $res = $conexion->query("SELECT @p_resultado AS resultado");
-        if ($res) {
-            $fila = $res->fetch_assoc();
-            $resultado = $fila['resultado'];
-        }
-
         $conexion->close();
-
-        return $resultado;
     }
 
 }
